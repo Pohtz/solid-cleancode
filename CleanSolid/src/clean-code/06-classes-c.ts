@@ -1,7 +1,7 @@
 (() => {
 
     // Aplicando el principio de responsabilidad única
-    // Prioroizar la composición frente a la herencia
+    // Priorizar la composición frente a la herencia!
 
     type Gender = 'M'|'F';
 
@@ -31,17 +31,17 @@
 
     class User {
         
-        public email        : string;
-        public lastAccess   : Date;
-        public role         : string;
+        public email      : string;
+        public lastAccess : Date;
+        public role       : string;
 
         constructor({
             email,
             role,
         }: UserProps ) {
-            this.email       = email;
-            this.lastAccess  = new Date();
-            this.role        = role;
+            this.lastAccess = new Date();
+            this.email = email;
+            this.role  = role;
         }
 
         checkCredentials() {
@@ -61,14 +61,14 @@
         public lastOpenFolder  : string;
 
         constructor({
-            workingDirectory,
             lastOpenFolder,
+            workingDirectory,
         }: SettingsProps ) {
-
-            this.workingDirectory = workingDirectory;
             this.lastOpenFolder   = lastOpenFolder;
+            this.workingDirectory = workingDirectory;
         }
     }
+
 
     interface UserSettingsProps {
         birthdate        : Date;
@@ -78,27 +78,27 @@
         name             : string;
         role             : string;
         workingDirectory : string;
-    }    
+    }
+
     class UserSettings {
-        public person   : Person;
-        public user     : User;
-        public settings : Settings;
+
+        public person  : Person;
+        public user    : User;
+        public settings: Settings;
 
         constructor({
-            name,
-            gender,
-            birthdate,
-            email,
-            role,
-            lastOpenFolder,
-            workingDirectory,
-        }: UserSettingsProps ) {
-            this.person   = new Person({ name, gender, birthdate });
-            this.user     = new User({ email, role });
-            this.settings = new Settings({ lastOpenFolder, workingDirectory });
+            name, gender, birthdate,
+            email, role,
+            lastOpenFolder, workingDirectory,
+        }: UserSettingsProps ){
+
+            this.person = new Person({ name, gender, birthdate });
+            this.user = new User({ email, role });
+            this.settings = new Settings({ lastOpenFolder, workingDirectory })
         }
     }
-            
+
+
 
     const userSettings = new UserSettings({
         birthdate: new Date('1985-10-21'),
@@ -111,5 +111,6 @@
     });
 
     console.log({ userSettings });
-    userSettings.user.checkCredentials();
+
+    
 })();

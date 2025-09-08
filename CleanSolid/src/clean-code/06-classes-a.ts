@@ -1,22 +1,22 @@
 (() => {
 
     // No aplicando el principio de responsabilidad única
-    type Gender = "M" | "F";
+
+    type Gender = 'M'|'F';
 
     class Person {
-     
         constructor(
-            public name: string,
-            public gender: Gender,
+            public name: string, 
+            public gender: Gender, 
             public birthdate: Date
-        ) {}
-        
+        ){}
     }
-    
-    class user extends Person {
 
-        public lastAccess: Date;
+
+    class User extends Person {
         
+        public lastAccess: Date;
+
         constructor(
             public email: string,
             public role: string,
@@ -24,7 +24,7 @@
             gender: Gender,
             birthdate: Date,
         ) {
-            super(name, gender, birthdate);
+            super( name, gender, birthdate );
             this.lastAccess = new Date();
         }
 
@@ -33,18 +33,18 @@
         }
     }
 
-    class UserSettings extends user {
+
+    class UserSettings extends User {
         constructor(
             public workingDirectory: string,
-            public lastFolderOpen: string,
-            email           : string,
-            role            : string,
-            name            : string,
-            gender          : Gender,
-            birthdate       : Date,
+            public lastOpenFolder  : string,
+            email                  : string,
+            role                   : string,
+            name                   : string,
+            gender                 : Gender,
+            birthdate              : Date
         ) {
-            super(email, role, name, gender, birthdate);
-            
+            super(email, role, name, gender, birthdate );
         }
     }
 
@@ -52,13 +52,14 @@
     const userSettings = new UserSettings(
         '/usr/home',
         '/home',
-        'carlos@google.com',
+        'fernando@google.com',
         'Admin',
-        'Carlos',
+        'Fernando',
         'M',
-        new Date
-    )
+        new Date('1985-10-21')
+    );
 
-    console.log({ userSettings, areCredentialsValid: userSettings.checkCredentials() });
+    console.log({ userSettings });
+
 
 })();
